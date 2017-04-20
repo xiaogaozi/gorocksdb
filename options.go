@@ -305,6 +305,15 @@ func (opts *Options) SetMaxOpenFiles(value int) {
 	C.rocksdb_options_set_max_open_files(opts.c, C.int(value))
 }
 
+// SetMaxFileOpeningThreads set the number of threads used to open the files
+//
+// If max_open_files is -1, DB will open all files on DB::Open(). You can
+// use this option to increase the number of threads.
+// Default: 16
+func (opts *Options) SetMaxFileOpeningThreads(value int) {
+	C.rocksdb_options_set_max_file_opening_threads(opts.c, C.int(value))
+}
+
 // SetCompression sets the compression algorithm.
 // Default: SnappyCompression, which gives lightweight but fast
 // compression.
